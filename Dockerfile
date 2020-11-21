@@ -8,8 +8,8 @@ RUN yarn install
 
 COPY . /app
 
-RUN yarn test
-RUN yarn build
+RUN yarn test && \
+    yarn build
 
 CMD yarn start
 
