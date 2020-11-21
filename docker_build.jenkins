@@ -6,6 +6,7 @@ pipeline {
   agent {
     label 'master'
   }
+  trigger {pollSCM('* * * * * *')}
   options {
     timestamps()
   }
