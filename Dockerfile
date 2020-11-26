@@ -9,7 +9,7 @@ RUN yarn install
 COPY . /app
 
 # RUN yarn test && \
-#    yarn build
+RUN    yarn build
 
 CMD yarn start
 
