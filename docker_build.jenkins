@@ -23,7 +23,7 @@ pipeline {
     }
     stage('docker deploy') {
       steps {
-        echo '================ deoloing ================='
+        echo '================ deoloi ================='
           sh 'ssh root@172.20.10.9 \'docker run -d -p 3000:3000 nebantepermanentnopls/flatris:latest\''
       }
     }
