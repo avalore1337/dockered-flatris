@@ -1,7 +1,6 @@
 FROM node
 
-RUN mkdir /app
-workdir /app
+WORKDIR /app
 
 COPY package.json /app
 RUN yarn install
