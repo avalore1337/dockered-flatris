@@ -39,7 +39,7 @@
   - name: start container
     docker_container:
       name: flatris
-      image: nebantepermanentnopls/flatris
+      image: nebantepermanentnopls/flatris:{{ BUILD_NUMBER }}
       state: started
       published_ports:
       - 0.0.0.0:3000:3000
