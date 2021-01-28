@@ -1,11 +1,11 @@
 FROM node
 
-WORKDIR /app
+WORKDIR /var/app
 
-COPY package.json /app
+COPY package.json /var/app
 RUN yarn install
 
-COPY . /app
+COPY . /var/app
 
 # RUN yarn test && \
 RUN    yarn build
