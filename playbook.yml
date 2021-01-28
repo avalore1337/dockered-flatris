@@ -9,6 +9,7 @@
       - curl
       - gnupg-agent
       - software-properties-common
+      - python3-pip
   
   - name: add apt key
     apt_key:
