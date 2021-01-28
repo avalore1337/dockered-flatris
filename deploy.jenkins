@@ -21,6 +21,7 @@ pipeline {
                     
                 }
                 sh 'docker push nebantepermanentnopls/flatris:$BUILD_NUMBER'
+                sh 'docker push nebantepermanentnopls/flatris:latest'
             }
         }
         stage('deploy'){
