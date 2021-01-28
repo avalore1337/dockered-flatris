@@ -29,9 +29,8 @@ pipeline {
             }
         }
     }
-}
-
-post {
+    
+    post {
     failure {
         mail to: 'typa.lesskeetit@gmail.com',
              subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
@@ -43,3 +42,4 @@ post {
                 body: "Something is wrong with ${env.BUILD_URL}"
     }
 }
+
