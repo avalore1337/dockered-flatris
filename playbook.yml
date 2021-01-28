@@ -1,42 +1,42 @@
-hosts: all
-become: yes
-tasks:
-- name: apt update
-  apt:
-    name:
-    - apt-transport-https
-    - ca-certificates
-    - curl
-    - gnupg-agent
-    - software-properties-common
+- hosts: all
+  become: yes
+  tasks:
+  - name: apt update
+    apt:
+      name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg-agent
+      - software-properties-common
   
-- name: add apt key
-  apt_key:
-    url: https://download.docker.com/linux/ubuntu/gpg
+  - name: add apt key
+    apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
     
-- name: os ver
-  shell: lsb_release -cs
-  register: version
+  - name: os ver
+    shell: lsb_release -cs
+    register: version
   
-- name: add rep
-  apt_repository:
-    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ version.stdout }} stable
+  - name: add rep
+    apt_repository:
+      repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ version.stdout }} stable
      
-- name: update
-  apt: 
-    update_cache: yes
-    name: 
-    - docker-ce 
-    - docker-ce-cli 
-    - containerd.io
+  - name: update
+    apt: 
+      update_cache: yes
+      name: 
+      - docker-ce 
+      - docker-ce-cli 
+      - containerd.io
     
-- name: start container
-  docker_container:
-    name: flatris
-    image: nebantepermanentnopls/flatris
-    state: started
-    published_ports:
-    - 0.0.0.0:3000:3000
+  - name: start container
+    docker_container:
+      name: flatris
+      image: nebantepermanentnopls/flatris
+      state: started
+      published_ports:
+      - 0.0.0.0:3000:3000
       
 
   
