@@ -29,7 +29,12 @@
       - docker-ce 
       - docker-ce-cli 
       - containerd.io
-    
+
+ - name: install docker py
+    pip:
+      name: docker
+      state: latest
+ 
   - name: start container
     docker_container:
       name: flatris
