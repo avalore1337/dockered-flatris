@@ -26,7 +26,7 @@ pipeline {
         }
         stage('deploy'){
             steps{
-                ansiblePlaybook become: true, credentialsId: 'jenkins-key', disableHostKeyChecking: true, exstras: '-e BUILD_NUMBER=$BUILD_NUMBER',  installation: 'ansible', inventory: 'inventory', playbook: 'playbook.yml'
+                ansiblePlaybook become: true, credentialsId: 'jenkins-key', disableHostKeyChecking: true, exstras: '-e BUILD_NUMBER=${BUILD_NUMBER}',  installation: 'ansible', inventory: 'inventory', playbook: 'playbook.yml'
             }
         }
     }
