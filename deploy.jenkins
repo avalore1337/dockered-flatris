@@ -1,0 +1,32 @@
+#!groovy
+
+pipeline {
+    agent any
+    
+    stages {
+        stage('git clone'){
+            steps{
+                git credentialsId: 'GitHub', url: 'https://github.com/nebantepermanentnopls/flatris.git'
+            }
+        }
+        stage('build docker image') {
+            steps {
+                sh 'docker build . -t nebantepermanentnopls/flatris:$BUILD_NUMBER'
+            }
+        }
+        stage('docker push'){
+            steps{
+                withCredentials([usernamePassword(credentialsId: 'GitHub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+                    sh  'docker login -u $USERNAME -p $PASSWORD'
+                    
+                }
+                sh 'docker push nebantepermanentnopls/flatris:$BUILD_NUMBER'
+            }
+        }
+        stage('deploy'){
+            steps{
+                ansiblePlaybook become: true, credentialsId: 'jenkins-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory', playbook: 'playbook.yml'
+            }
+        }
+    }
+}
