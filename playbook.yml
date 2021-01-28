@@ -30,7 +30,7 @@
       - docker-ce-cli 
       - containerd.io
 
- - name: install docker py
+  - name: install docker py
     pip:
       name: docker
       state: latest
