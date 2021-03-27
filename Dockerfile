@@ -1,4 +1,4 @@
-FROM node
+FROM node:alpine as builder
 
 WORKDIR /var/app
 
@@ -10,7 +10,13 @@ COPY . /var/app
 # RUN yarn test && \
 RUN    yarn build
 
+
+FROM node:alpine
+
+WORKDIR /app
+
+COPY --from=builder /var/app/  .
+
 EXPOSE 3000
 
 CMD yarn start
-
